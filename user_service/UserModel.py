@@ -30,6 +30,12 @@ class User(db.Model):
         user_to_update.password = _password
         db.session.commit()
 
+    def is_valid(_username, _password):
+        user_check = User.query.filter_by(username=_username).filter_by(password=_password).first()
+        if user_check is None:
+            return False
+        return True
+
     
     def __repr__(self):
         user = {
